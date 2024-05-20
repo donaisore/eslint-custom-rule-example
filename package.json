@@ -2,7 +2,8 @@
   "name": "eslint-custom-rule-example",
   "version": "1.0.0",
   "description": "",
-  "main": "example.js",
+  "main": "main.js",
+  "type": "module",
   "scripts": {
     "lint": "eslint"
   },
