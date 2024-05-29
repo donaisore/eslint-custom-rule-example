@@ -9,14 +9,14 @@ export default {
     fixable: "code",
     schema: [], // no options
     messages: {
-      unexpected: "Unexpected hoge.",
+      unexpected: "{{ name }} を使わないで！",
     },
   },
   create(context) {
     const sourceCode = context.sourceCode;
 
     return {
-      VariableDeclaration(node) {
+      VariableDeclarator(node) {
         const variables = sourceCode.getDeclaredVariables(node);
         variables.forEach((variable) => {
           const name = variable.name;
@@ -31,5 +31,16 @@ export default {
         });
       },
     };
+    // const { hoge, fuga } = { hoge: 1, fuga: 2 };
+    // ↓のようにシンプルに書くと、↑のパターンに対応できない
+    // VariableDeclarator(node) {
+    //   if (node.id.name === "hoge") {
+    //     context.report({
+    //       node,
+    //       messageId: "unexpected",
+    //       data: { name: "hoge" },
+    //     });
+    //   }
+    // },
   },
 };

@@ -1,5 +1,2 @@
-console.log("console.log in example.js");
-console.error("console.error in example.js");
-
-const hoge = "hoge";
-console.log(hoge);
+// console.log(hoge);
+const { hoge, fuga } = { hoge: 1, fuga: 2 };
